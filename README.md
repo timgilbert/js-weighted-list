@@ -17,7 +17,10 @@ As an example:
     
     // wl.peek() returns items at random from the list, and does not modify the list.
     var result = wl.peek();   // Ex: ['a']
+    var result = wl.peek();   // Ex: ['e']
     var result = wl.peek(3);  // Ex: ['a', 'c', 'd'] 
+    var result = wl.peek(3);  // Ex: ['e', 'a', 'd'] 
+    var result = wl.peek(3);  // Ex: ['a', 'b', 'e'] 
     
     // wl.pop() returns random items from the list and removes the items it found
     var result = wl.pop(2);  // Ex: ['a', 'd'], after which wl consists of [ ['b',  1], ['c',  1], ['e',  3] ]
