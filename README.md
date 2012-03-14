@@ -90,4 +90,8 @@ TODO
 
 * jslint
 
+* Minified version?
+
+* Figure out js package guidelines from npm or whatever and conform to them
+
 [answer]: http://stackoverflow.com/a/2149533/87990

@@ -1,7 +1,11 @@
 /**
  * js-weighted-list.js
  * 
+ * version 0.1
+ * 
  * This file is licensed under the MIT License, please see MIT-LICENSE.txt for details.
+ * 
+ * https://github.com/timgilbert/js-weighted-list is its home.
  */
 function WeightedList(initial) { 
   this.weights = {};

@@ -50,7 +50,7 @@
         var wl = new WeightedList(seed);
         for (var i = 0; i < 10; i++) {
           var shuff = wl.shuffle();
-          console.debug(shuff);
+          //console.debug(shuff);
           var results = [];
           for (var j = 0; j < shuff.length; j++) {
             var elem = shuff[j];
@@ -78,7 +78,7 @@
   
   <div id="content">
       
-    <h1>Test</h1>
+    <h1>js-weighted-list tests</h1>
     <p>Select some data to run tests:
       <div id="fields"></div>
       <button id="go" class="hidden">Do it</button>
