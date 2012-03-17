@@ -97,4 +97,6 @@ TODO
 
 * Figure out js package guidelines from npm or whatever and conform to them
 
+* 'use strict'; - moreover, figure out how best to use that wrapped-function idiom
+
 [answer]: http://stackoverflow.com/a/2149533/87990

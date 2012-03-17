@@ -16,7 +16,7 @@ function WeightedList(initial) {
   if (initial != null) {
     for (var i = 0; i < initial.length; i++) {
       var item = initial[i]
-      this.addItem(item[0], item[1], item[2]);
+      this.push(item[0], item[1], item[2]);
     }
   }
 }
@@ -24,7 +24,7 @@ WeightedList.prototype = {
   /**
    * Add an item to the list
    */
-  addItem: function(key, weight, data) {
+  push: function(key, weight, data) {
     //console.debug('k:', key, 'w:', weight, 'd:', data);
     this.weights[key] = weight;
     if (data != null) {
