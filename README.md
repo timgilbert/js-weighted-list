@@ -53,6 +53,9 @@ Include the file:
     <script type="text/javascript" src="js-weighted-list.js"></script>
 ```
 
+(Eventually, the node.js equivalent should be `require('js-weighted-list')`, but I 
+haven't verified that the package structure is correct for npm yet.)
+
 The basic object which is exported is a WeightedList, which you can instantiate like this:
 
 ```javascript

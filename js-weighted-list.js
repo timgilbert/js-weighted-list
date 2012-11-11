@@ -71,11 +71,16 @@ var WeightedList = (function() {
     /**
      * Add an item to the list
      * @access private
-     * @param key the key under which this item is stored
+     * @param {String} key the key under which this item is stored
+     * @param {number} weight the weight to assign to this key
+     * @param {?Object} data any optional data associated wth this key
      */
     _push_values: function(key, weight, data) {
       //console.debug('k:', key, 'w:', weight, 'd:', data);
+
+      // uh, wait, what?
       this.weights[key] = weight;
+      
       if (data !== null) {
         this.hasData = true;
         this.data[key] = data;
