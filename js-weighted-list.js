@@ -15,7 +15,6 @@ var WeightedList = (function() {
     this.data = {};
     this.length = 0;
     this.hasData = false;
-    console.debug(initial);
 
     initial = typeof initial !== 'undefined' ? initial : [];
 
@@ -81,10 +80,10 @@ var WeightedList = (function() {
     _push_values: function(key, weight, data) {
       //console.debug('k:', key, 'w:', weight, 'd:', data);
 
-      // uh, wait, what?
+      // TODO check for extant key instead of just nuking it
       this.weights[key] = weight;
 
-      if (data !== null) {
+      if (typeof data !== 'undefined') {
         this.hasData = true;
         this.data[key] = data;
       }
@@ -92,7 +91,11 @@ var WeightedList = (function() {
     },
     
     /** 
-     * Add the given weight to the list item with the given key
+     * Add the given weight to the list item with the given key.  Note that if 
+     * the key does not already exist, this operation will silently create it.
+     * 
+     * @todo might be nice to have a version of this that would throw an error 
+     *       on an unknown key.
      */
     addWeight: function(key, weight) {
       this.weights[key] += weight;
@@ -104,11 +107,17 @@ var WeightedList = (function() {
      * from the list.  (This is what the pop() method does.)
      */
     peek: function(n, andRemove) {
-      if (n === null) {
+      if (typeof n === 'undefined') {
         n = 1;
       }
       andRemove = !!andRemove;
-      
+
+      if (this.length - n < 0) {
+        throw 'Stack underflow! Tried to retrieve ' + n + 
+              ' element' + (n === 1 ? '' : 's') + 
+              ' from a list of ' + this.length;
+      }
+
       heap = this._buildWeightedHeap();
       //console.debug('heap:', heap);
       result = [];
@@ -141,7 +150,7 @@ var WeightedList = (function() {
      * 
      */
     pop: function(n) {
-      return peek(n, true);
+      return this.peek(n, true);
     },
     
     /**
@@ -149,12 +158,8 @@ var WeightedList = (function() {
      */
     _buildWeightedHeap: function() {
       var items = [];
-      for (var key in this.weights) {
-        // skip over Object.prototype monkey-patching per
-        // http://bonsaiden.github.com/JavaScript-Garden/#object.forinloop
-        if (this.weights.hasOwnProperty(key)) {
-          items.push([key, this.weights[key]]);
-        }
+      for (var key in this.weights) if (this.weights.hasOwnProperty(key)) {
+        items.push([key, this.weights[key]]);
       }
       //console.log('items',items);
       return new _WeightedHeap(items);
@@ -184,7 +189,7 @@ var WeightedList = (function() {
       var value = items[i][0];
       this.heap.push(new _HeapNode(weight, value, weight));
     }
-    // Now go through the heap and each node's weight to its parent
+    // Now go through the heap and add each node's weight to its parent
     for (i = this.heap.length - 1; i > 1; i--) {
       this.heap[i>>1].total += this.heap[i].total;
     }

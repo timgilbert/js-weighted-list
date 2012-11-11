@@ -49,9 +49,30 @@ var planets = [
     }
   });
 
-  test("WeightedList constructors", function() {
-    var wl = new WeightedList();
-    ok( {}, 'Object');
+  test('Basic operations', function() {
+    equal( wl.length, 0, 'Zero length');
+    deepEqual(wl.shuffle(), [], 'Empty list');
+  });
+
+  test('Error conditions', function() {
+    raises(function() {
+      wl.pop();
+    }, 'Stack underflow');
+    raises(function() {
+      wl.peek(2);
+    }, 'Peeking too much');
+  });
+
+  test('Adding elements by array', function() {
+    wl.push(['k', 3]);
+    deepEqual(wl.length, 1);
+    deepEqual(wl.shuffle(), ['k'], 'Shuffle');
+  });
+
+  test('Adding elements by object', function() {
+    wl.push({'key': 'x', 'weight': 2});
+    deepEqual(wl.length, 1);
+    deepEqual(wl.shuffle(), ['x'], 'Shuffle');
   });
 
 })();
