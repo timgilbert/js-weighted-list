@@ -90,7 +90,7 @@ TODO
 
 * better error handling (stack underflow, etc)
 
-* unit tests!
+* expand qunit unit tests and look into mocha
 
 * node.jsify
 

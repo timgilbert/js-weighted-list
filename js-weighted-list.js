@@ -21,17 +21,59 @@ var WeightedList = (function() {
 
     initial = typeof initial !== 'undefined' ? initial : [];
 
-    for (var i = 0; i < initial.length; i++) {
-      var item = initial[i];
-      this.push(item[0], item[1], item[2]);
+    if (Array.isArray(initial)) {
+      for (var i = 0; i < initial.length; i++) {
+        //var item = initial[i];
+        //this.push(item[0], item[1], item[2]);
+        this.push(initial[i]);
+      }
     }
   }
 
   _WeightedList.prototype = {
     /**
-     * Add an item to the list
+     * Add a single item to the list.  The parameter passed in represents a single 
+     * key-value, with a weight and optionally some data attached.
+     * 
+     * The parameter to this function can either be a 2-3 element array of 
+     * [k, w, d] for key, weight and data (data is optional) or an object with the 
+     * values {'key': k, 'weight': w, 'data': d} where d is optional.
      */
-    push: function(key, weight, data) {
+    push: function(element) {
+      var key, weight, data;
+
+      if (Array.isArray(element)) {
+        key = element[0], weight = element[1], data = element[2];
+        if (typeof key === 'undefined') {
+          // Eg, wl.push([])
+          throw "In WeightedList.push([ ... ]), need at least two elements";
+        } else if (typeof weight === 'undefined') {
+          // I suppose we could default to 1 here, but the API is already too forgiving
+          throw "In array passed to WeightedList.push([ ... ]), second element is undefined";
+        }
+      } else if (typeof element === 'object') {
+        // We expect {"key": "zombies", "weight": 10, "data": {"fast": true}}
+        key = element.key, weight = element.weight, data = element.data;
+        if (typeof key === 'undefined') {
+          throw "In WeightedList.push({ ... }), no {'key': 'xyzzy'} pair found";
+        } else if (typeof weight === 'undefined') {
+          // I suppose we could default to 1 here, but the API is already too forgiving
+          throw "In array passed to WeightedList.push({ ... }), no {'weight': 42} pair found";
+        }
+    } else {
+        // else what the heck were you trying to give me?
+        throw 'WeightedList.push() passed unknown type "' + typeof element + 
+              '", expected [key, weight] or {"key": k, "weight": w}';
+      }
+      return this._push_values(key, weight, data);
+
+    },
+    /**
+     * Add an item to the list
+     * @access private
+     * @param key the key under which this item is stored
+     */
+    _push_values: function(key, weight, data) {
       //console.debug('k:', key, 'w:', weight, 'd:', data);
       this.weights[key] = weight;
       if (data !== null) {
