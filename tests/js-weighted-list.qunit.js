@@ -57,9 +57,8 @@ var planetsArrayWithData = [
   test('Proper constructors', function() {
     ok( new WeightedList(), 'No-argument constructor');
     ok( new WeightedList([]), 'Empty array');
-    ok( new WeightedList(noDataPair), 'Single-entry constructor');
-    ok( new WeightedList(simpleDataPair), 'Single-entry constructor with data');
-    ok( new WeightedList(single), 'Single-element array');
+    ok( new WeightedList([noDataPair]), 'Single-entry constructor');
+    ok( new WeightedList([simpleDataPair]), 'Single-entry constructor with data');
     ok( new WeightedList(planets), 'Multiple-element array, with objects');
     ok( new WeightedList(planetsWithData), 'Multiple-element array, with objects and data');
     ok( new WeightedList(planetsArray), 'Multiple-element array, with arrays');

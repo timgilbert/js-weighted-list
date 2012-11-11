@@ -24,11 +24,9 @@ var WeightedList = (function() {
         //this.push(item[0], item[1], item[2]);
         this.push(initial[i]);
       }
-    } else if (typeof initial === 'object') {
-      this.push(initial);
     } else {
       throw 'Unknown object "' + initial.toString() + 
-            '" passed to WeightedList constructor';
+            '" passed to WeightedList constructor! (Expected array or nothing)';
     }
   }
 
