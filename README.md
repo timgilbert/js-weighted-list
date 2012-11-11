@@ -110,10 +110,10 @@ You can also pass in an `{'key': 'k', 'weight': 12, ` instead of an array if you
 
 ```javascript
     var planets = new WeightedList(
-        [ {'key': 'earth', 'weight: 10, 'data': {'orbit': 3}},
-          {'key': 'mars',  'weight:  7, 'data': {'orbit': 4}} ]);
+        [ {'key': 'earth', 'weight': 10, 'data': {'orbit': 3}},
+          {'key': 'mars',  'weight':  7, 'data': {'orbit': 4}} ]);
 
-    planets.push({'key': 'pluto', 'weight: 1, 'data': {'orbit': 9}});
+    planets.push({'key': 'pluto', 'weight': 1, 'data': {'orbit': 9}});
 
     sandwich.peek();     // Ex: [ {'key': 'earth', 'data': { 'orbit': 3}} ]
 ```
