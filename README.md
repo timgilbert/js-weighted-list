@@ -3,7 +3,7 @@ js-weighted-list
 
 This is a smallish library which implements a weighted list, from which elements 
 can be picked out at random with a probability dependent on their weight.  The 
-list implements random sampling without replacement.
+list implements [random sampling without replacement][sampling].
 
 As an example:
 
@@ -106,3 +106,4 @@ TODO
 * Not entirely sure if the whole "data" thing is really neccesary
 
 [answer]: http://stackoverflow.com/a/2149533/87990
+[sampling]: http://www.ma.utexas.edu/users/parker/sampling/repl.htm

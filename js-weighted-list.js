@@ -132,7 +132,7 @@ var WeightedList = (function() {
         }
         if (andRemove) {
           delete this.weights[key];
-          delete this.values[key];
+          delete this.data[key];
           this.length--;
         }
       }
