@@ -59,11 +59,30 @@ haven't verified that the package structure is correct for npm yet.)
 The basic object which is exported is a WeightedList, which you can instantiate like this:
 
 ```javascript
+    // Initially empty list
     var wl = new WeightedList();
+
+    // Array of arrays
+    var wl = new WeightedList([ ['a': 1], ['b': 3], ['c': 1] ]);
+
+    // Array of objects
+    var wl = new WeightedList([ {'key': 'a', 'weight': 1}, 
+                                {'key': 'b', 'weight': 3}, 
+                                {'key': 'c', 'weight': 1} ]);
 ```
 
-Every item on the list has a key, a weight, and optionally, some other data attached.  Keys 
-must be unique.  Additional data can be passed in as a third element in the constructor list, 
+Every item on the list has a key, a weight, and optionally, some other data 
+attached (see below).  Keys must be unique and must be usable as keys in an 
+object (eg, strings or integers).
+
+Attaching Data
+--------------
+
+In addition to just returning key values in a random order, a WeightedList 
+instance can associate arbitrary data with particular keys, which is then 
+returned along with the keys.
+
+Additional data can be passed in as a third element in the constructor list, 
 or as a third argument to the addItem() method:
 
 ```javascript
@@ -81,12 +100,27 @@ If a list contains data elements as described above, functions the select elemen
 objects of the form `{key: key, data: data}` instead of simply `key`.  For example:
 
 ```javascript
-    sandwich.peek();     // Ex: [ {key: 'marv', data: {name: 'Marvin', sandwich: 'roast beef'}} ]
-    sandwich.shuffle();  // Ex: [ {key: 'marv', data: {name: 'Marvin', sandwich: 'roast beef'}}, 
-                         //       {key: 'bob', data: { name: 'Bob', sandwich: 'turkey' }} ]
+    sandwich.peek();     // Ex: [ {'key': 'marv', 'data': {'name': 'Marvin', 'sandwich': 'roast beef'}} ]
+    sandwich.shuffle();  // Ex: [ {'key': 'marv', 'data': {'name': 'Marvin', 'sandwich': 'roast beef'}}, 
+                         //       {'key': 'bob',  'data': {'name': 'Bob',    'sandwich': 'turkey' }} ]
 ```
 
+You can also pass in an `{'key': 'k', 'weight': 12, ` instead of an array if you'd prefer to:
 
+```javascript
+    var planets = new WeightedList(
+        [ {'key': 'earth', 'weight: 10, 'data': {'orbit': 3}},
+          {'key': 'mars',  'weight:  7, 'data': {'orbit': 4}} ]);
+
+    planets.push({'key': 'pluto', 'weight: 1, 'data': {'orbit': 9}});
+
+    sandwich.peek();     // Ex: [ {'key': 'earth', 'data': { 'orbit': 3}} ]
+```
+
+As with using arrays as parameters, the `'data'` key is optional, and if no key 
+in the list has data attached to it, return values from operations that retrieve 
+values from the list will return simple lists of keys instead of `{'key': k, 'data': d}`
+pairs.
 
 TODO
 ----
