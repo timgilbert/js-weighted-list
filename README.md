@@ -115,7 +115,7 @@ You can also pass in an `{'key': 'k', 'weight': 12, ` instead of an array if you
 
     planets.push({'key': 'pluto', 'weight': 1, 'data': {'orbit': 9}});
 
-    sandwich.peek();     // Ex: [ {'key': 'earth', 'data': { 'orbit': 3}} ]
+    sandwich.peek();     // Ex: [ {'key': 'earth', 'data': {'orbit': 3}} ]
 ```
 
 As with using arrays as parameters, the `'data'` key is optional, and if no key 
