@@ -96,8 +96,9 @@ or as a third argument to the addItem() method:
    sandwich.push('bob',   1, { name: 'Bob', sandwich: 'turkey' });
 ```
 
-If a list contains data elements as described above, functions the select elements from it will return 
-objects of the form `{key: key, data: data}` instead of simply `key`.  For example:
+If a list contains data elements as described above, methods which retrieve 
+elements from it will return objects of the form `{'key': k, 'data': d}` 
+instead of simply `key`.  For example:
 
 ```javascript
     sandwich.peek();     // Ex: [ {'key': 'marv', 'data': {'name': 'Marvin', 'sandwich': 'roast beef'}} ]
