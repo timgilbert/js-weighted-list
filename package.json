@@ -1,0 +1,18 @@
+{
+  "name": "js-weighted-list",
+  "version": "0.1.0",
+  "description": "Small weighted-probability list library",
+  "main": "js-weighted-list.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/timgilbert/js-weighted-list.git"
+  },
+  "keywords": [
+    "probability",
+    "list",
+    "random"
+  ],
+  "author": "Tim Gilbert <timgilbert@gmail.com>",
+  "license": "MIT",
+  "readmeFilename": "README.md"
+}
