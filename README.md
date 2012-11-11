@@ -100,6 +100,6 @@ TODO
 
 * browser tests which graph lists, stats
 
-* 
+* Not entirely sure if the whole "data" thing is really neccesary
 
 [answer]: http://stackoverflow.com/a/2149533/87990
