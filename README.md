@@ -1,8 +1,9 @@
 js-weighted-list
 ================
 
-This is a smallish library which implements a weighted list, from which elements can be picked out at random with 
-a probability dependent on their weight.  The list implements random sampling without replacement.
+This is a smallish library which implements a weighted list, from which elements 
+can be picked out at random with a probability dependent on their weight.  The 
+list implements random sampling without replacement.
 
 As an example:
 
