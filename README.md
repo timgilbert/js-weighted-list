@@ -83,7 +83,7 @@ instance can associate arbitrary data with particular keys, which is then
 returned along with the keys.
 
 Additional data can be passed in as a third element in the constructor list, 
-or as a third argument to the addItem() method:
+or as a third argument to the `addItem()` method:
 
 ```javascript
     var sandwich = new WeightedList(
@@ -96,9 +96,9 @@ or as a third argument to the addItem() method:
    sandwich.push('bob',   1, { name: 'Bob', sandwich: 'turkey' });
 ```
 
-If a list contains data elements as described above, methods which retrieve 
-elements from it will return objects of the form `{'key': k, 'data': d}` 
-instead of simply `key`.  For example:
+If a WeightedList instance contains data elements as described above, methods 
+which retrieve elements from it will return objects of the form 
+`{'key': k, 'data': d}` instead of simply `key`.  For example:
 
 ```javascript
     sandwich.peek();     // Ex: [ {'key': 'marv', 'data': {'name': 'Marvin', 'sandwich': 'roast beef'}} ]
