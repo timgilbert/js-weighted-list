@@ -8,8 +8,6 @@
  * https://github.com/timgilbert/js-weighted-list is its home.
  */
 
-// Our public namespace
-
 var WeightedList = (function() {
 
   function _WeightedList(initial) { 
@@ -27,6 +25,11 @@ var WeightedList = (function() {
         //this.push(item[0], item[1], item[2]);
         this.push(initial[i]);
       }
+    } else if (typeof initial === 'object') {
+      this.push(initial);
+    } else {
+      throw 'Unknown object "' + initial.toString() + 
+            '" passed to WeightedList constructor';
     }
   }
 
@@ -80,7 +83,7 @@ var WeightedList = (function() {
 
       // uh, wait, what?
       this.weights[key] = weight;
-      
+
       if (data !== null) {
         this.hasData = true;
         this.data[key] = data;
