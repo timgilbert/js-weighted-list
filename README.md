@@ -130,7 +130,9 @@ TODO
 
 * expand qunit unit tests and look into mocha
 
-* node.jsify
+* node.jsify. In particular, figure out AMD and maybe use [amdefine][amdefine].
+The goal is to be able to run mocha tests from the command-line as well as in 
+the browser.
 
 * Minified version?
 
@@ -142,3 +144,4 @@ TODO
 
 [answer]: http://stackoverflow.com/a/2149533/87990
 [sampling]: http://www.ma.utexas.edu/users/parker/sampling/repl.htm
+[amdefine]: http://www.2ality.com/2012/07/amdefine.html
