@@ -7,6 +7,10 @@
     "type": "git",
     "url": "git://github.com/timgilbert/js-weighted-list.git"
   },
+  "devDependencies": {
+    "chai": "*",
+    "mocha": "*"
+  },
   "keywords": [
     "probability",
     "list",
