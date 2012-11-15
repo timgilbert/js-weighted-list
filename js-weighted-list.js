@@ -25,15 +25,15 @@ var WeightedList = (function() {
         this.push(initial[i]);
       }
     } else {
-      throw 'Unknown object "' + initial.toString() + 
-            '" passed to WeightedList constructor! (Expected array or nothing)';
+      throw new Error('Unknown object "' + initial.toString() + '" passed to ' + 
+                      'WeightedList constructor! (Expected array or nothing)');
     }
   }
 
   _WeightedList.prototype = {
     /**
      * Add a single item to the list.  The parameter passed in represents a single 
-     * key-value, with a weight and optionally some data attached.
+     * key, with a weight and optionally some data attached.
      * 
      * The parameter to this function can either be a 2-3 element array of 
      * [k, w, d] for key, weight and data (data is optional) or an object with the 
@@ -46,24 +46,26 @@ var WeightedList = (function() {
         key = element[0], weight = element[1], data = element[2];
         if (typeof key === 'undefined') {
           // Eg, wl.push([])
-          throw "In WeightedList.push([ ... ]), need at least two elements";
+          throw new Error('In WeightedList.push([ ... ]), need at least two elements');
         } else if (typeof weight === 'undefined') {
           // I suppose we could default to 1 here, but the API is already too forgiving
-          throw "In array passed to WeightedList.push([ ... ]), second element is undefined";
+          throw new Error('In array passed to WeightedList.push([ ... ]), second ' + 
+                          'element is undefined!');
         }
       } else if (typeof element === 'object') {
         // We expect {"key": "zombies", "weight": 10, "data": {"fast": true}}
         key = element.key, weight = element.weight, data = element.data;
         if (typeof key === 'undefined') {
-          throw "In WeightedList.push({ ... }), no {'key': 'xyzzy'} pair found";
+          throw new Error("In WeightedList.push({ ... }), no {'key': 'xyzzy'} pair found");
         } else if (typeof weight === 'undefined') {
           // I suppose we could default to 1 here, but the API is already too forgiving
-          throw "In array passed to WeightedList.push({ ... }), no {'weight': 42} pair found";
+          throw new Error('In array passed to WeightedList.push({ ... }), no ' + 
+                          "{'weight': 42} pair found");
         }
     } else {
         // else what the heck were you trying to give me?
-        throw 'WeightedList.push() passed unknown type "' + typeof element + 
-              '", expected [key, weight] or {"key": k, "weight": w}';
+        throw new Error('WeightedList.push() passed unknown type "' + typeof element + 
+                        '", expected [key, weight] or {"key": k, "weight": w}');
       }
       return this._push_values(key, weight, data);
 
@@ -111,20 +113,20 @@ var WeightedList = (function() {
       andRemove = !!andRemove;
 
       if (this.length - n < 0) {
-        throw 'Stack underflow! Tried to retrieve ' + n + 
-              ' element' + (n === 1 ? '' : 's') + 
-              ' from a list of ' + this.length;
+        throw new Error('Stack underflow! Tried to retrieve ' + n + 
+                        ' element' + (n === 1 ? '' : 's') + 
+                        ' from a list of ' + this.length);
       }
 
-      heap = this._buildWeightedHeap();
+      var heap = this._buildWeightedHeap();
       //console.debug('heap:', heap);
-      result = [];
+      var result = [];
       
       for (var i = 0; i < n; i++) {
-        key = heap.pop();
+        var key = heap.pop();
         //console.debug('k:', key);
         if (this.hasData) {
-          result.push({key: key, value: this.data[key]});
+          result.push({key: key, data: this.data[key]});
         } else {
           result.push(key);
         }
