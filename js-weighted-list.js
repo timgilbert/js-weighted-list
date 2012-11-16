@@ -80,7 +80,16 @@ var WeightedList = (function() {
     _push_values: function(key, weight, data) {
       //console.debug('k:', key, 'w:', weight, 'd:', data);
 
-      // TODO check for extant key instead of just nuking it
+      if (this.weights[key]) {
+        throw new Error('');
+      }
+      if (typeof weight !== typeof 1) {
+        throw new Error('Weight must be numeric (got ' + weight.toString() + ')');
+      }
+      if (weight <= 0)  {
+        throw new Error('Weight must be >= 0 (got ' + weight + ')');
+      }
+
       this.weights[key] = weight;
 
       if (typeof data !== 'undefined') {
