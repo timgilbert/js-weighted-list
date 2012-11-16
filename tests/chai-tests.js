@@ -174,7 +174,13 @@ describe('WeightedList', function() {
       empty.should.have.length(1);
     });
 
-    it('should validate its weights');
+    it('should validate its weights', function() {
+      var badWeight = function() {
+        var wl = new WeightedList();
+        wl.push(['a', -2]);
+      };
+      expect(badWeight).to.Throw(Error);
+    });
 
   });
 
@@ -201,14 +207,34 @@ describe('WeightedList', function() {
       var wl = new WeightedList(planets);
       wl.should.have.length(8);
       var results = {};
+      // Pop out the elements one at a time, make sure that each one only occurs once
       for (var i = 0; i < planets.length; i++) {
         var key = wl.pop();
-        results[key] = 1;
+        results[key] = (results[key] || 0) + 1;
       }
       results.should.deep.equal({'mercury': 1, 'venus': 1, 'earth': 1, 'mars': 1,
                                  'jupiter': 1, 'saturn':1, 'uranus': 1, 'neptune': 1});
+      wl.should.have.length(0);
+      wl.shuffle().should.deep.equal([]);
     });
 
+    it('should return the right amounts of elements in peek()', function() {
+      var wl = new WeightedList(planets);
+      wl.should.have.length(8);
+      
+      var one = wl.peek();
+      one.should.have.length(1);
+      wl.should.have.length(8);
+
+      var seven = wl.peek(7);
+      seven.should.have.length(7);
+      wl.should.have.length(8);
+
+      var eight = wl.peek(8);
+      eight.should.have.length(8);
+      wl.should.have.length(8);
+
+    });
   });
 
 
